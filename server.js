@@ -23,14 +23,14 @@ app.get('/', (req, res) => {
 app.get('/api/barang', (req, res) => {
     connection.query('SELECT * FROM barang', (err, result) => {
         if (err) throw err;
-        res.json(result);
+        res.status(200).json(result);
     });
 });
 
 app.get('/api/barang/:id', (req, res) => {
     connection.query('SELECT * FROM barang WHERE id = ' + req.params.id, (err, result) => {
         if (err) throw err;
-        res.json(result);
+        res.status(200).json(result);
     });
 });
 
@@ -43,7 +43,7 @@ app.post('/api/barang', (req, res) => {
 
     connection.query('INSERT INTO barang (nama, stok, harga) VALUES (?)', [values], (err, result) => {
         if(err) throw err;
-        res.json({ 'info' : 'data berhasil dimasukkan' });
+        res.status(200).json({ 'info' : 'data berhasil dimasukkan' });
         console.log('Data berhasil dimasukkan');
     });
 });
@@ -66,7 +66,7 @@ app.put('/api/barang/:id', (req, res) => {
 
             connection.query(queryUpdate, [nama, stok, harga], (err, result) => {
                 if(err) throw err;
-                res.json({'info' : 'data berhasil diubah'});
+                res.status(200).json({'info' : 'data berhasil diubah'});
             });
 
         });
@@ -76,7 +76,7 @@ app.put('/api/barang/:id', (req, res) => {
 
 app.delete('/api/barang/:id', (req, res) => {
     connection.query('DELETE FROM barang WHERE id = ' + req.params.id, (err, result) => {
-        res.json({'info' : 'data berhasil dihapus'});
+        res.status(200).json({'info' : 'data berhasil dihapus'});
     });
 });
 
