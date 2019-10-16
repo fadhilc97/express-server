@@ -2,6 +2,7 @@ const express = require('express');
 const app = express();
 const bodyParser = require('body-parser');
 const mysql = require('mysql');
+const cors = require('cors');
 
 let connection = mysql.createConnection({
     host : 'localhost',
@@ -12,6 +13,7 @@ let connection = mysql.createConnection({
 
 connection.connect();
 
+app.use(cors());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 app.get('/', (req, res) => {
