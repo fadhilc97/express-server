@@ -1,7 +1,9 @@
 const express = require('express');
 const app = express();
-const bodyParser = require('body-parser');
 const mysql = require('mysql');
+
+// import middleware
+const bodyParser = require('body-parser');
 const cors = require('cors');
 
 let connection = mysql.createConnection({
